@@ -42,14 +42,32 @@
 
 // console.log(reverser('daniel nichols'));
 
-//Drill 4: Triangle Number
+// //Drill 4: Triangle Number
 
-const triNum = function(n) {
-  if(n === 1) {
-    return n;
+// const triNum = function(n) {
+//   if(n === 1) {
+//     return n;
+//   }
+
+//   return n + triNum(n-1);
+// }
+
+// console.log(triNum(5));
+
+
+//Drill 5 - String Splitter
+
+function split(string, separator) {
+  if (string.length === 0) {
+    return '';
   }
-
-  return n + triNum(n-1);
+  if (string[0] !== '/') {
+    let item = string[0] + string.slice(1);
+    return [item, ...split(string.slice(1))];
+  }
+  else {
+    return split(string.slice(1));
+  }
 }
 
-console.log(triNum(5));
+console.log(split('02/20/2020','/'));
