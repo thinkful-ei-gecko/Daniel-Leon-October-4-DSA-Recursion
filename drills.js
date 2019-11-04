@@ -7,7 +7,6 @@
 // }
 // console.log(sheepCall(3));
 
-
 // // Drill 2: PowerCalculator
 
 // const powerCalculator = function(base, exponent) {
@@ -18,7 +17,7 @@
 //   if(exponent === 0) {
 //     return 1;
 //   }
-  
+
 //   if (exponent < 0) {
 //     return 'exponent should be >= 0';
 //   }
@@ -28,8 +27,6 @@
 
 // console.log(powerCalculator(10, 2));
 // console.log(powerCalculator(5, 5));
-
-
 
 //Drill 3
 
@@ -54,7 +51,6 @@
 
 // console.log(triNum(5));
 
-
 //Drill 5 - String Splitter
 
 // function split(string, separator) {
@@ -70,18 +66,40 @@
 //   }
 // }
 
-const strSplit = function(str) { 
-  //base Case 
-  if(str === "") { 
-    return str; 
+const split = function(str, separator) {
+  let idx = str.indexOf(separator)
+  if(idx === -1) {
+    return [str];
   }
 
-  if (str[0] !== '/') { 
-    return [str[0] + strSplit(str.slice(1))];
-  } 
-  else { 
-    return strSplit(str.slice(1)) ;
-  } 
+  return [str.slice(0, idx), ...split(str.slice(idx + 1, str.length), separator)];
 };
 
-console.log('02/24/2020'.split('/'));
+console.log(split('test/test/test', '/'));
+
+
+
+//drill 6: Fibbonaci
+// const fib = function(n, count) {
+//   if (count <= 2) {
+//     return 1;
+//   }
+
+
+//   return fib(n - 1) + fib(n - 2);
+// };
+
+// console.log(fib(2));
+
+//Drill 7: Factorial
+
+// const factorial = function(n) {
+//   if(n === 1) {
+//     return n;
+//   }
+
+//   return  n * factorial(n-1);
+// };
+
+// console.log(factorial(3));
+
