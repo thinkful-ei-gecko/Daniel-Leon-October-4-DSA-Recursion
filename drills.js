@@ -53,29 +53,16 @@
 
 //Drill 5 - String Splitter
 
-// function split(string, separator) {
-//   if (string.length === 0) {
-//     return '';
+// const split = function(str, separator) {
+//   let idx = str.indexOf(separator)
+//   if(idx === -1) {
+//     return [str];
 //   }
-//   if (string[0] !== separator) {
-//     let item = [string[0]];
-//     return [item + split(string.slice(1), separator)];
-//   }
-//   else {
-//     return [split(string.slice(1), separator)];
-//   }
-// }
 
-const split = function(str, separator) {
-  let idx = str.indexOf(separator)
-  if(idx === -1) {
-    return [str];
-  }
+//   return [str.slice(0, idx), ...split(str.slice(idx + 1, str.length), separator)];
+// };
 
-  return [str.slice(0, idx), ...split(str.slice(idx + 1, str.length), separator)];
-};
-
-console.log(split('test/test/test', '/'));
+// console.log(split('test/test/test', '/'));
 
 
 
@@ -91,6 +78,9 @@ console.log(split('test/test/test', '/'));
 
 // console.log(fib(2));
 
+
+
+
 //Drill 7: Factorial
 
 // const factorial = function(n) {
@@ -103,3 +93,46 @@ console.log(split('test/test/test', '/'));
 
 // console.log(factorial(3));
 
+
+//Drill 8
+
+let mySmallMaze = [
+  [' ', ' ', ' '],
+  [' ', '*', ' '],
+  [' ', ' ', 'e']
+];
+
+let maze = [
+  [' ', ' ', ' ', '*', ' ', ' ', ' '],
+  ['*', '*', ' ', '*', ' ', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+  [' ', '*', '*', '*', '*', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+];
+
+//returns a string with directions: RRLLDLRL;
+function solveSmallMaze(maze, currentPosition = [0,0]) {
+  let length = maze[0].length;
+  let height = maze.length;
+  // let currentMazeLetter = maze[currentPosition[1]][0];
+
+
+  //base case
+  console.log(currentPosition);
+  if (currentPosition[0] === length-1 && currentPosition[1] === height-1) {
+    return '';
+  }
+
+  if (currentPosition[0] >= length-1 || maze[currentPosition[1]][currentPosition[0]+1] === '*') { //if we reach a blocker on the right side, go down
+    let currentStep = 'D';
+    let newPosition = [currentPosition[0],currentPosition[1]+1];
+    return currentStep + solveSmallMaze(maze, newPosition)
+  }
+  else { // go right
+    let currentStep = 'R';
+    let newPosition = [currentPosition[0]+1,currentPosition[1]];
+    return currentStep + solveSmallMaze(maze, newPosition)
+  }
+}
+
+console.log(solveSmallMaze(maze));
