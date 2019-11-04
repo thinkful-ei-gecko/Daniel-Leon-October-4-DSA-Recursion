@@ -42,3 +42,14 @@
 
 // console.log(reverser('daniel nichols'));
 
+//Drill 4: Triangle Number
+
+const triNum = function(n) {
+  if(n === 1) {
+    return n;
+  }
+
+  return n + triNum(n-1);
+}
+
+console.log(triNum(5));
