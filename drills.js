@@ -61,13 +61,13 @@ function split(string, separator) {
   if (string.length === 0) {
     return '';
   }
-  if (string[0] !== '/') {
-    let item = string[0] + string.slice(1);
-    return [item, ...split(string.slice(1))];
+  if (string[0] !== separator) {
+    let item = [string[0]];
+    return [item + split(string.slice(1), separator)];
   }
   else {
-    return split(string.slice(1));
+    return [split(string.slice(1), separator)];
   }
 }
 
-console.log(split('02/20/2020','/'));
+console.log(split('20/02/2020','/'));
