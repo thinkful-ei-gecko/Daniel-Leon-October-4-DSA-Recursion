@@ -57,17 +57,31 @@
 
 //Drill 5 - String Splitter
 
-function split(string, separator) {
-  if (string.length === 0) {
-    return '';
-  }
-  if (string[0] !== separator) {
-    let item = [string[0]];
-    return [item + split(string.slice(1), separator)];
-  }
-  else {
-    return [split(string.slice(1), separator)];
-  }
-}
+// function split(string, separator) {
+//   if (string.length === 0) {
+//     return '';
+//   }
+//   if (string[0] !== separator) {
+//     let item = [string[0]];
+//     return [item + split(string.slice(1), separator)];
+//   }
+//   else {
+//     return [split(string.slice(1), separator)];
+//   }
+// }
 
-console.log(split('20/02/2020','/'));
+const strSplit = function(str) { 
+  //base Case 
+  if(str === "") { 
+    return str; 
+  }
+
+  if (str[0] !== '/') { 
+    return [str[0] + strSplit(str.slice(1))];
+  } 
+  else { 
+    return strSplit(str.slice(1)) ;
+  } 
+};
+
+console.log('02/24/2020'.split('/'));
